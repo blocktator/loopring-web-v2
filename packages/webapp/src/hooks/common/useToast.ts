@@ -1,17 +1,18 @@
-import React from 'react'
+import React from "react";
 
 export const useToast = () => {
+  const [toastOpen, setToastOpen] = React.useState<
+    | { open?: boolean; type: any; content: string | React.FC | JSX.Element }
+    | undefined
+  >(undefined);
 
-    const [toastOpen, setToastOpen] = React.useState<{ open?: boolean, type: any, content: string } | undefined>(undefined)
+  const closeToast = React.useCallback(() => {
+    setToastOpen(undefined);
+  }, [setToastOpen]);
 
-    const closeToast = React.useCallback(() => {
-        setToastOpen(undefined)
-    }, [setToastOpen])
-
-    return {
-        toastOpen,
-        setToastOpen,
-        closeToast,
-    }
-
-}
+  return {
+    toastOpen,
+    setToastOpen,
+    closeToast,
+  };
+};
