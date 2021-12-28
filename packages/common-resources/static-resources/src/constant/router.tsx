@@ -3,6 +3,7 @@ import {
   L2HistoryIcon,
   L2MyLiquidityIcon,
   L2OrderIcon,
+  NotificationIcon,
   SecurityIcon,
   VipIcon,
 } from "../svg";
@@ -11,6 +12,8 @@ import {
   HeaderMenuItemInterface,
   HeaderMenuTabStatus,
 } from "../loopring-interface";
+import { HebaoProtected } from "@loopring-web/webapp/src/pages/hebaoPage/HebaoProtected";
+import React from "react";
 
 export enum ButtonComponentsMap {
   Download,
@@ -138,12 +141,6 @@ export const subMenuLayer2 = {
         id: "assets",
         i18nKey: "labelAssets",
       },
-      // }, {
-      //     icon: L2MyLiquidityIcon,
-      //     router: {path: '/layer2/my-nft'},
-      //     label: {
-      //         id: 'my-nft', i18nKey: 'labelMyNFT',
-      //     }
     },
     {
       icon: L2MyLiquidityIcon,
@@ -170,18 +167,6 @@ export const subMenuLayer2 = {
         id: "order",
         i18nKey: "labelOrder",
       },
-      // }, {
-      //     icon: RewardIcon,
-      //     router: {path: '/layer2/rewards'},
-      //     label: {
-      //         id: 'reward', i18nKey: 'labelReward',
-      //     },
-      // }, {
-      //     icon: RedPockIcon,
-      //     router: {path: '/layer2/redpock'},
-      //     label: {
-      //         id: 'redpock', i18nKey: 'labelRedPock',
-      //     },
     },
   ],
   settingGroup: [
@@ -203,47 +188,26 @@ export const subMenuLayer2 = {
     },
   ],
 };
+export const subMenuHebao = {
+  assetsGroup: [
+    {
+      icon: AssetsIcon,
+      router: { path: "/hebao/hebao-protected" },
+      label: {
+        id: "hebao-protected",
+        i18nKey: "labelHebaoProtect",
+      },
+    },
+    {
+      icon: NotificationIcon,
+      router: { path: "/hebao/hebao-validation-info" },
+      label: {
+        id: "hebao-validation",
+        i18nKey: "labelHebaoValidation",
+      },
+    },
+  ],
+};
 
-// export const subMenuLiquidity = {
-//     poolsGroup: [{
-//         // icon: PoolsIcon,
-//         router: {path: '/liquidity/pools'},
-//         label: {
-//             id: 'pools',
-//             i18nKey: 'labelPools',
-//         },
-//     }, {
-//         // icon: MiningIcon,
-//         router: {path: '/liquidity/amm-mining'},
-//         label: {
-//             id: 'amm-mining',
-//             i18nKey: 'labelAmmMining',
-//         },
-//     }, {
-//         // icon: MyLiquidityIcon,
-//         router: {path: '/liquidity/my-liquidity'},
-//         label: {
-//             id: 'my-liquidity',
-//             i18nKey: 'labelMyLiquidity',
-//         },
-//     }],
-//     // bookGroup: [{
-//     //     icon: OrderMinIcon,
-//     //     router: {path: '/liquidity/orderBook-Mining'},
-//     //     label: {
-//     //         id: 'orderBook-Mining',
-//     //         i18nKey: 'labelOrderBookMining',
-//     //     }
-//     // },
-//     //     {
-//     //     icon: MakerRebatesIcon,
-//     //     router: {path: '/liquidity/maker-rebates'},
-//     //     label: {
-//     //         id: 'maker-rebates',                                             a
-//     //         i18nKey: 'labelMakerRebates',
-//     //     },
-//     // }
-//     // ]
-// }
 export const headerRoot = "Landing-page";
 export const SoursURL = "https://static.loopring.io/assets/";
