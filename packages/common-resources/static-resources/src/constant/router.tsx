@@ -1,5 +1,4 @@
 import {
-  ActiveIcon,
   AssetsIcon,
   L2HistoryIcon,
   L2MyLiquidityIcon,
@@ -13,6 +12,8 @@ import {
   HeaderMenuItemInterface,
   HeaderMenuTabStatus,
 } from "../loopring-interface";
+import { HebaoProtected } from "@loopring-web/webapp/src/pages/hebaoPage/HebaoProtected";
+import React from "react";
 
 export enum ButtonComponentsMap {
   Download,
@@ -190,7 +191,7 @@ export const subMenuLayer2 = {
 export const subMenuHebao = {
   assetsGroup: [
     {
-      icon: SecurityIcon,
+      icon: AssetsIcon,
       router: { path: "/hebao/hebao-protected" },
       label: {
         id: "hebao-protected",
