@@ -27,6 +27,7 @@ import { HebaoProtector } from "./HebaoProtector";
 
 import { useRouteMatch } from "react-router-dom";
 import { HebaoValidationInfo } from "./HebaoValidationInfo";
+import { useHebaoMain } from "./hook";
 
 const BtnConnect = withTranslation(["common", "layout"], { withRef: true })(
   ({ t }: any) => {
@@ -65,17 +66,17 @@ export const HebaoPage = withTranslation(["common"])(
     let match = useRouteMatch("/hebao/:item");
     // @ts-ignore
     const selected = match?.params?.item ?? "myProtected";
-    const hebaoRouter = React.useMemo(() => {
+    const { protectList, guardiansList } = useHebaoMain();
+    const hebaoRouter = () => {
+      console.log(protectList);
       switch (selected) {
-        case "hebao-protected":
-          return <HebaoProtector protectList={[]} />;
         case "hebao-validation-info":
-          return <HebaoValidationInfo />;
+          return <HebaoValidationInfo guardiansList={guardiansList} />;
+        case "hebao-protected":
         default:
-          return <HebaoProtector protectList={[]} />;
+          return <HebaoProtector protectList={protectList} />;
       }
-    }, [selected]);
-
+    };
     const viewTemplate = React.useMemo(() => {
       switch (account.readyState) {
         case AccountStatus.UN_CONNECT:
@@ -126,7 +127,7 @@ export const HebaoPage = withTranslation(["common"])(
                 marginBottom={2}
                 className={"MuiPaper-elevation2"}
               >
-                {hebaoRouter}
+                {hebaoRouter()}
               </Box>
             </>
           );
@@ -152,7 +153,7 @@ export const HebaoPage = withTranslation(["common"])(
         default:
           break;
       }
-    }, [account.readyState]);
+    }, [account.readyState, selected, protectList, guardiansList]);
     return <>{viewTemplate}</>;
   }
 );

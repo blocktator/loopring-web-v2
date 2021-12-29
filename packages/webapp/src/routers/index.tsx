@@ -40,9 +40,9 @@ const ContentWrap = ({
         <Container
           maxWidth="lg"
           style={{
-            minHeight: `calc(100% - ${LAYOUT.HEADER_HEIGHT}px - 32px)`,
             display: "flex",
             flexDirection: "column",
+            flex: 1,
           }}
         >
           <Box
@@ -97,9 +97,9 @@ const RouterView = ({ state }: { state: keyof typeof SagaStatus }) => {
           <Container
             maxWidth="lg"
             style={{
-              minHeight: `calc(100% - ${LAYOUT.HEADER_HEIGHT}px - 32px)`,
               display: "flex",
               flexDirection: "column",
+              flex: 1,
             }}
           >
             <Box
@@ -133,9 +133,9 @@ const RouterView = ({ state }: { state: keyof typeof SagaStatus }) => {
           <Container
             maxWidth="lg"
             style={{
-              minHeight: `calc(100% - ${LAYOUT.HEADER_HEIGHT}px - 32px)`,
               display: "flex",
               flexDirection: "column",
+              flex: 1,
             }}
           >
             <ReportPage />
@@ -150,9 +150,9 @@ const RouterView = ({ state }: { state: keyof typeof SagaStatus }) => {
           <Container
             maxWidth="lg"
             style={{
-              minHeight: `calc(100% - ${LAYOUT.HEADER_HEIGHT}px - 32px)`,
               display: "flex",
               flexDirection: "column",
+              flex: 1,
             }}
           >
             <MarkdownPage />
@@ -167,9 +167,9 @@ const RouterView = ({ state }: { state: keyof typeof SagaStatus }) => {
           <Container
             maxWidth="lg"
             style={{
-              minHeight: `calc(100% - ${LAYOUT.HEADER_HEIGHT}px - 32px)`,
               display: "flex",
               flexDirection: "column",
+              flex: 1,
             }}
           >
             <NotifyMarkdownPage />
