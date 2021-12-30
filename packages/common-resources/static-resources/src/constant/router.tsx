@@ -4,6 +4,7 @@ import {
   L2HistoryIcon,
   L2MyLiquidityIcon,
   L2OrderIcon,
+  NotificationIcon,
   SecurityIcon,
   VipIcon,
 } from "../svg";
@@ -197,7 +198,7 @@ export const subMenuHebao = {
       },
     },
     {
-      icon: ActiveIcon,
+      icon: NotificationIcon,
       router: { path: "/hebao/hebao-validation-info" },
       label: {
         id: "hebao-validation",

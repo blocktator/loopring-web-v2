@@ -14,6 +14,7 @@ import {
 } from "@loopring-web/component-lib";
 import React from "react";
 import { useTranslation } from "react-i18next";
+
 import {
   LoadingIcon,
   LockIcon,
@@ -53,8 +54,8 @@ const HebaoProtectStyled = styled(ListItem)<ListItemProps>`
   }
 ` as (prosp: ListItemProps) => JSX.Element;
 
-export const HebaoProtectItem = (
-  props: Protector & { onClick: () => void }
+export const HebaoProtectItem = <T extends Protector>(
+  props: Protector & { onClick: (protector: T) => void }
 ) => {
   const { t } = useTranslation("common");
   const { address, ens, lockStatus, onClick } = props;
@@ -114,7 +115,17 @@ export const HebaoProtectItem = (
         );
       case "LOCK_FAILED":
       case "CREATED":
-        return <></>;
+        return (
+          <Button
+            variant={"contained"}
+            size={"small"}
+            color={"primary"}
+            startIcon={<LockIcon htmlColor={"var(--color-text-button)"} />}
+            onClick={() => onClick({ address, ens, lockStatus } as T)}
+          >
+            {t("labelLock")}
+          </Button>
+        );
     }
   }, [lockStatus]);
 
@@ -134,7 +145,7 @@ export const HebaoProtectItem = (
         <Box flex={1}>
           <ListItemText
             className="description description1"
-            primary={ens}
+            primary={ens ?? t("labelUnknown")}
             primaryTypographyProps={{
               component: "p",
               variant: "h5",
@@ -160,10 +171,6 @@ export const HebaoProtectItem = (
     </HebaoProtectStyled>
   );
 };
-const StylePaper = styled(Box)`
-  background: var(--color-box);
-  border-radius: ${({ theme }) => theme.unit}px;
-`;
 export const HebaoProtector = <T extends Protector>({
   protectList,
 }: {
@@ -226,16 +233,16 @@ export const HebaoProtector = <T extends Protector>({
         description={description()}
         url={`ethereum:${account?.accAddress}?type=${account?.connectName}&action=HebaoAddGuardian`}
       />
-      <StylePaper
+      <Box
         paddingTop={3}
         borderRadius={2}
         flex={1}
         display={"flex"}
         flexDirection={"column"}
       >
-        <Box display={"flex"} justifyContent={"space-between"} paddingX={3}>
+        <Box display={"flex"} justifyContent={"space-between"} paddingX={5 / 2}>
           <Typography component={"h3"} variant={"h5"}>
-            {t("labelHebaoAddAsaProtector")}
+            {t("labelHebaoGuardianList")}
           </Typography>
           <ButtonListRightStyled
             item
@@ -288,7 +295,7 @@ export const HebaoProtector = <T extends Protector>({
             />
           )}
         </Box>
-      </StylePaper>
+      </Box>
     </>
   );
 };

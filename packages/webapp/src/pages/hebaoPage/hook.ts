@@ -33,41 +33,40 @@ export const useHebaoMain = <T extends Protector, G extends Guardian>() => {
           myLog(error);
         });
       //protector.protectorArray   ?? []
-      debugger;
       setProtectList(
-        protector.protectorArray ?? []
-        // [
-        // {
-        //   ens: "demo.loopring.protect",
-        //   address: "0xfF7d59D9316EBA168837E3eF924BCDFd64b237D8",
-        //   lockStatus: HEBAO_LOCK_STATUS.LOCK_FAILED,
-        // },
-        // {
-        //   ens: "demo.loopring.protect",
-        //   address: "0xfF7d59D9316EBA168837E3eF924BCDFd64b237D8",
-        //   lockStatus: HEBAO_LOCK_STATUS.CREATED,
-        // },
-        // {
-        //   ens: "demo.loopring.protect",
-        //   address: "0xfF7d59D9316EBA168837E3eF924BCDFd64b237D8",
-        //   lockStatus: HEBAO_LOCK_STATUS.LOCK_WAITING,
-        // },
-        // {
-        //   ens: "demo.loopring.protect",
-        //   address: "0xfF7d59D9316EBA168837E3eF924BCDFd64b237D8",
-        //   lockStatus: HEBAO_LOCK_STATUS.UNLOCK_FAILED,
-        // },
-        // {
-        //   ens: "demo.loopring.protect",
-        //   address: "0xfF7d59D9316EBA168837E3eF924BCDFd64b237D8",
-        //   lockStatus: HEBAO_LOCK_STATUS.LOCKED,
-        // },
-        // {
-        //   ens: "demo.loopring.protect",
-        //   address: "0xfF7d59D9316EBA168837E3eF924BCDFd64b237D8",
-        //   lockStatus: HEBAO_LOCK_STATUS.UNLOCK_WAITING,
-        // },
-        // ]
+        // protector.protectorArray ?? []
+        [
+          {
+            ens: "demo.loopring.protect",
+            address: "0xfF7d59D9316EBA168837E3eF924BCDFd64b237D8",
+            lockStatus: HEBAO_LOCK_STATUS.LOCK_FAILED,
+          },
+          {
+            ens: "demo.loopring.protect",
+            address: "0xfF7d59D9316EBA168837E3eF924BCDFd64b237D8",
+            lockStatus: HEBAO_LOCK_STATUS.CREATED,
+          },
+          {
+            ens: "demo.loopring.protect",
+            address: "0xfF7d59D9316EBA168837E3eF924BCDFd64b237D8",
+            lockStatus: HEBAO_LOCK_STATUS.LOCK_WAITING,
+          },
+          {
+            ens: "demo.loopring.protect",
+            address: "0xfF7d59D9316EBA168837E3eF924BCDFd64b237D8",
+            lockStatus: HEBAO_LOCK_STATUS.UNLOCK_FAILED,
+          },
+          {
+            ens: "demo.loopring.protect",
+            address: "0xfF7d59D9316EBA168837E3eF924BCDFd64b237D8",
+            lockStatus: HEBAO_LOCK_STATUS.LOCKED,
+          },
+          {
+            ens: "demo.loopring.protect",
+            address: "0xfF7d59D9316EBA168837E3eF924BCDFd64b237D8",
+            lockStatus: HEBAO_LOCK_STATUS.UNLOCK_WAITING,
+          },
+        ] as T[]
       );
       setGuardiansList(
         guardians.guardiansArray

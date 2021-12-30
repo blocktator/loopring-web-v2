@@ -475,4 +475,11 @@ export default {
   labelHours: "Hours",
   labelMinutes: "Minutes",
   labelSeconds: "Seconds",
+  labelLock: "Lock",
+  labelHebaoAddAsGuardian: "Add as a Guardian",
+  labelHebaoScanQRCode: "Scan the QR code with your Loopring Wallet",
+  labelHebaoGuardianList: "Guardian List",
+  labelAddProtector: "add Guardian",
+  labelNoContent: "labelNoContent",
+  labelUnknown: "unknown",
 };

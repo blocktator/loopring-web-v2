@@ -28,6 +28,7 @@ import { HebaoProtector } from "./HebaoProtector";
 import { useRouteMatch } from "react-router-dom";
 import { HebaoValidationInfo } from "./HebaoValidationInfo";
 import { useHebaoMain } from "./hook";
+import { StylePaper } from "pages/styled";
 
 const BtnConnect = withTranslation(["common", "layout"], { withRef: true })(
   ({ t }: any) => {
@@ -117,7 +118,7 @@ export const HebaoPage = withTranslation(["common"])(
                   />
                 </SubMenu>
               </Box>
-              <Box
+              <StylePaper
                 minHeight={420}
                 display={"flex"}
                 alignItems={"stretch"}
@@ -128,7 +129,7 @@ export const HebaoPage = withTranslation(["common"])(
                 className={"MuiPaper-elevation2"}
               >
                 {hebaoRouter()}
-              </Box>
+              </StylePaper>
             </>
           );
           break;
