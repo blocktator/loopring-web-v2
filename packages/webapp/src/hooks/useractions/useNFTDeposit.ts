@@ -124,6 +124,24 @@ export const useNFTDeposit = <
       });
     } else {
       setShowNFTDeposit({ isShow: false });
+      // updateNFTDepositData({
+      //     belong: keyVal as any,
+      //     tradeValue: 0,
+      //     balance: walletInfo.count,
+      // })
+      // if (!nftDepositValue.belong && walletLayer1) {
+      //     const keys = Reflect.ownKeys(walletLayer1)
+      //     for (var key in keys) {
+      //         const keyVal = keys[key] as any
+      //         const walletInfo = walletLayer1[keyVal]
+      //         if (sdk.toBig(walletInfo.count).gt(0)) {
+      //
+      //
+      //
+      //             return
+      //         }
+      //     }
+      // }
     }
   }, [nftData, nftBalance, updateNFTDepositData, nftDepositValue]);
 
@@ -194,9 +212,10 @@ export const useNFTDeposit = <
             myLog("setReffer generateKeyPair!!! refferId:", refferId);
 
             const eddsaKey = await sdk.generateKeyPair({
+              accountId: account.accountId,
+              chainId: chainId as any,
               web3: connectProvides.usedWeb3,
               address: account.accAddress,
-              chainId: chainId as any,
               exchangeAddress: exchangeInfo.exchangeAddress,
               keyNonce: 0,
               walletType: account.connectName as sdk.ConnectorNames,
