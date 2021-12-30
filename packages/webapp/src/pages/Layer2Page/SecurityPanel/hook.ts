@@ -64,10 +64,9 @@ export function useExportAccountInfo() {
         const connectName = account.connectName as sdk.ConnectorNames;
 
         const eddsaKey = await sdk.generateKeyPair({
-          accountId: account.accountId,
-          chainId: chainId as any,
           web3: connectProvides.usedWeb3,
           address: account.accAddress,
+          chainId: chainId as any,
           exchangeAddress: exchangeInfo.exchangeAddress,
           keyNonce: account.nonce - 1,
           walletType: connectName,

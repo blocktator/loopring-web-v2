@@ -19,16 +19,16 @@ export async function unlockAccount() {
       const connectName = account.connectName as sdk.ConnectorNames;
 
       const eddsaKey = await sdk.generateKeyPair({
-        accountId: account.accountId,
-        chainId: chainId as any,
         web3: connectProvides.usedWeb3,
         address: account.accAddress,
         exchangeAddress: exchangeInfo.exchangeAddress,
         keyNonce: account.nonce - 1,
         walletType: connectName,
+        chainId: chainId as any,
+        accountId: account.accountId,
       });
 
-      // myLog('unlockAccount eddsaKey:', eddsaKey)
+      myLog("unlockAccount eddsaKey:", eddsaKey);
 
       const { apiKey, raw_data } = await LoopringAPI.userAPI.getUserApiKey(
         {

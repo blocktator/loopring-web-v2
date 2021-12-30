@@ -99,13 +99,12 @@ export async function updateAccountFromServer({
           if (!eddsaKey) {
             myLog("no eddsaKey ！!");
             eddsaKey = await sdk.generateKeyPair({
-              accountId: account.accountId,
-              chainId: system.chainId as any,
               web3: connectProvides.usedWeb3,
               address: accInfo.owner,
               exchangeAddress: system.exchangeInfo.exchangeAddress,
               keyNonce: accInfo.nonce,
               walletType: connectName,
+              chainId: system.chainId as any,
             });
             myLog("no eddsaKey! after generateKeyPair");
           }

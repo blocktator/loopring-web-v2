@@ -198,13 +198,12 @@ export const useDeposit = <R extends IBData<T>, T>(): {
             myLog("setReffer generateKeyPair!!! refferId:", refferId);
 
             const eddsaKey = await sdk.generateKeyPair({
-              chainId: chainId as any,
               web3: connectProvides.usedWeb3,
+              chainId: chainId as any,
               address: account.accAddress,
               exchangeAddress: exchangeInfo.exchangeAddress,
               keyNonce: 0,
               walletType: account.connectName as sdk.ConnectorNames,
-              accountId: account.accountId,
             });
             const request: sdk.SetReferrerRequest = {
               address: account.accAddress,

@@ -12,8 +12,6 @@ import {
   HeaderMenuItemInterface,
   HeaderMenuTabStatus,
 } from "../loopring-interface";
-import { HebaoProtected } from "@loopring-web/webapp/src/pages/hebaoPage/HebaoProtected";
-import React from "react";
 
 export enum ButtonComponentsMap {
   Download,
