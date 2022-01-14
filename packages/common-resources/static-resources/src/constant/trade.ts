@@ -3,7 +3,7 @@ import {
   NFTTokenInfo,
   UserNFTBalanceInfo,
 } from "@loopring-web/loopring-sdk";
-import { IBData } from "../loopring-interface";
+import { FeeInfo, IBData } from "../loopring-interface";
 
 export enum WithdrawType {
   Fast = "Fast",
@@ -63,7 +63,7 @@ export type NFTWholeINFO = NFTTokenInfo &
     nftBalance: number;
     isDeployed: boolean;
     etherscanBaseUrl: string;
-  };
+  } & { fee?: FeeInfo };
 export type TradeNFT<I> = {
   balance?: number;
   isApproved?: boolean;

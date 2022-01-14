@@ -138,7 +138,7 @@ export const useMyNFT = () => {
   const onDetail = React.useCallback(
     async (item: Partial<NFTWholeINFO>) => {
       const nftData: NftData = item.nftData as NftData;
-      const [nftMap, isDeployed] = await Promise.all([
+      let [nftMap, isDeployed] = await Promise.all([
         LoopringAPI?.nftAPI?.getInfoForNFTTokens({
           nftDatas:
             // [item.tokenAddress]
@@ -152,6 +152,7 @@ export const useMyNFT = () => {
       ]);
       const nftToken: Partial<NFTTokenInfo> =
         nftMap && nftMap[nftData as NftData] ? nftMap[nftData as NftData] : {};
+      // isDeployed = !isDeployed;
       let tokenInfo: NFTWholeINFO = {
         ...item,
         isDeployed,
@@ -164,9 +165,10 @@ export const useMyNFT = () => {
         nftBalance: tokenInfo.total ? Number(tokenInfo.total) : 0,
       };
       if (!isDeployed) {
-        LoopringAPI.userAPI?.getAvailableBroker().then(({ broker }) => {
-          updateNFTDeployData(tokenInfo && { broker });
+        await LoopringAPI.userAPI?.getAvailableBroker().then(({ broker }) => {
+          updateNFTDeployData({ broker });
         });
+        updateNFTDeployData(tokenInfo);
       } else {
         updateNFTWithdrawData(tokenInfo);
       }

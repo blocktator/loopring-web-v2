@@ -57,7 +57,7 @@ export const ActiveAccountWrap = <T extends object>({
         setIsFeeNotEnough(false);
       }
       const feeItem = chargeFeeTokenList.find(
-        (item) => item.token === feeToken
+        (item) => item.belong === feeToken || item.token === feeToken
       );
       handleFeeChange({
         belong: feeToken,

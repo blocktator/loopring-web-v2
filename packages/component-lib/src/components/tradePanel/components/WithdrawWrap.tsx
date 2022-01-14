@@ -19,6 +19,7 @@ import {
   HelpIcon,
   IBData,
   LoadingIcon,
+  myLog,
   TOAST_TIME,
   WithdrawTypes,
 } from "@loopring-web/common-resources";
@@ -104,7 +105,7 @@ export const WithdrawWrap = <
   });
 
   React.useEffect(() => {
-    if (!!chargeFeeTokenList.length && feeChargeOrder) {
+    if (!!chargeFeeTokenList.length && feeChargeOrder && !feeToken) {
       const defaultToken =
         chargeFeeTokenList.find(
           (o) =>
@@ -143,20 +144,31 @@ export const WithdrawWrap = <
     isCFAddress ||
     (isContractAddress &&
       disableWithdrawList.includes(tradeData?.belong ?? ""));
-  const getDisabled = () => {
+  const getDisabled = React.useMemo(() => {
     if (
       disabled ||
       tradeData === undefined ||
       walletMap === undefined ||
       coinMap === undefined ||
       isNotAvaiableAddress ||
-      isFeeNotEnough
+      isFeeNotEnough ||
+      withdrawBtnStatus === TradeBtnStatus.DISABLED ||
+      withdrawBtnStatus === TradeBtnStatus.LOADING
     ) {
       return true;
     } else {
       return false;
     }
-  };
+  }, [
+    disabled,
+    withdrawBtnStatus,
+    tradeData,
+    walletMap,
+    coinMap,
+    isNotAvaiableAddress,
+    isFeeNotEnough,
+  ]);
+  myLog("withdrawWrap", getDisabled);
   const inputButtonDefaultProps = {
     label: t("withdrawLabelEnterToken"),
   };
@@ -255,7 +267,6 @@ export const WithdrawWrap = <
       }
     }
   }, [setAddress, setAddressError, handleAddressError]);
-
   return (
     <Grid
       className={walletMap ? "" : "loading"}
@@ -516,17 +527,11 @@ export const WithdrawWrap = <
             onWithdrawClick(tradeData);
           }}
           loading={
-            !getDisabled() && withdrawBtnStatus === TradeBtnStatus.LOADING
+            withdrawBtnStatus === TradeBtnStatus.LOADING && !getDisabled
               ? "true"
               : "false"
           }
-          disabled={
-            getDisabled() ||
-            withdrawBtnStatus === TradeBtnStatus.DISABLED ||
-            withdrawBtnStatus === TradeBtnStatus.LOADING
-              ? true
-              : false
-          }
+          disabled={getDisabled}
         >
           {t(withdrawI18nKey ?? `withdrawLabelBtn`)}
         </Button>

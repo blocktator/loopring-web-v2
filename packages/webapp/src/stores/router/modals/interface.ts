@@ -31,6 +31,7 @@ export type DepositData = {
 
 export type ActiveAccountData = {
   chargeFeeList: FeeInfo[];
+  fee?: FeeInfo;
   walletLayer2: WalletLayer2Map<any> | undefined;
 };
 

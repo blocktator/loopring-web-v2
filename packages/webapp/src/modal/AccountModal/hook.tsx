@@ -61,6 +61,10 @@ import {
   NFTDeploy_Denied,
   NFTDeploy_Failed,
   NFTDeploy_Submit,
+  NFTDeploy_First_Method_Denied,
+  NFTDeploy_In_Progress,
+  NFTMint_First_Method_Denied,
+  NFTMint_In_Progress,
 } from "@loopring-web/component-lib";
 import { connectProvides, walletServices } from "@loopring-web/web3-provider";
 
@@ -284,6 +288,16 @@ export function useAccountModalForUI({
       },
     };
   }, [setShowAccount, setShowNFTMint]);
+
+  const backToDeployBtnInfo = React.useMemo(() => {
+    return {
+      btnTxt: "labelRetry",
+      callback: () => {
+        setShowAccount({ isShow: false });
+        // setShowAccount({isShow: true, step: AccountStep.Deposit});
+      },
+    };
+  }, [setShowAccount]);
 
   const backToTransferBtnInfo = React.useMemo(() => {
     return {
@@ -804,6 +818,30 @@ export function useAccountModalForUI({
           // setShowAccount({isShow: true, step: AccountStep.Deposit});
         },
       },
+      [AccountStep.NFTMint_First_Method_Denied]: {
+        view: (
+          <NFTMint_First_Method_Denied
+            btnInfo={backToMintBtnInfo}
+            {...{
+              ...rest,
+              ...nftDeployValue,
+              t,
+            }}
+          />
+        ),
+      },
+      [AccountStep.NFTMint_In_Progress]: {
+        view: (
+          <NFTMint_In_Progress
+            {...{
+              ...rest,
+              ...nftDeployValue,
+              t,
+            }}
+          />
+        ),
+      },
+
       [AccountStep.NFTMint_Failed]: {
         view: (
           <NFTMint_Failed
@@ -863,7 +901,7 @@ export function useAccountModalForUI({
       [AccountStep.NFTDeploy_Denied]: {
         view: (
           <NFTDeploy_Denied
-            btnInfo={backToMintBtnInfo}
+            btnInfo={backToDeployBtnInfo}
             {...{
               ...rest,
               ...nftDeployValue,
@@ -876,6 +914,29 @@ export function useAccountModalForUI({
           setShowDeposit({ isShow: true });
           // setShowAccount({isShow: true, step: AccountStep.Deposit});
         },
+      },
+      [AccountStep.NFTDeploy_First_Method_Denied]: {
+        view: (
+          <NFTDeploy_First_Method_Denied
+            btnInfo={backToDeployBtnInfo}
+            {...{
+              ...rest,
+              ...nftDeployValue,
+              t,
+            }}
+          />
+        ),
+      },
+      [AccountStep.NFTDeploy_In_Progress]: {
+        view: (
+          <NFTDeploy_In_Progress
+            {...{
+              ...rest,
+              ...nftDeployValue,
+              t,
+            }}
+          />
+        ),
       },
       [AccountStep.NFTDeploy_Failed]: {
         view: (

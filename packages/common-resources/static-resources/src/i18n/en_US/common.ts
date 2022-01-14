@@ -519,4 +519,8 @@ export default {
   nftDeployTitle: "Deploy NFT",
   nftMintDescription: "Mint NFT",
   nftMintTitle: "Mint NFT",
+  labelNFTDeployBtn: "Deploy NFT",
+  labelNFTDeployBroker: "Deploy Broker:",
+  labelDeployInProgress: "Processing...",
+  labelNFTDeploy: "Deploy NFT",
 };

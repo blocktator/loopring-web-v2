@@ -1,20 +1,19 @@
-import { NFTDeployViewProps } from "./Interface";
-import { Trans, useTranslation } from "react-i18next";
-import { bindPopper, usePopupState } from "material-ui-popup-state/hooks";
-import React from "react";
-import { Box, Grid, Link, Typography } from "@mui/material";
 import {
   EmptyValueTag,
   getValuePrecisionThousand,
   HelpIcon,
   TradeNFT,
 } from "@loopring-web/common-resources";
+import { NFTDeployViewProps } from "./Interface";
+import { Trans, useTranslation } from "react-i18next";
+import React from "react";
+import { bindPopper, usePopupState } from "material-ui-popup-state/hooks";
+import { useSettings } from "../../../stores";
+import { Box, Grid, Link, Typography } from "@mui/material";
 import { bindHover } from "material-ui-popup-state/es";
 import { Button, PopoverPure, ToggleButtonGroup } from "../../basic-lib";
+import { DropdownIconStyled, FeeTokenItemWrapper } from "./Styled";
 import { TradeBtnStatus } from "../Interface";
-import { DropdownIconStyled, FeeTokenItemWrapper, GridStyle } from "components";
-import { useSettings } from "../../../stores";
-import { NFTType } from "@loopring-web/loopring-sdk";
 
 export const DeployNFTWrap = <T extends TradeNFT<I> & { broker: string }, I>({
   tradeData,
@@ -66,7 +65,7 @@ export const DeployNFTWrap = <T extends TradeNFT<I> & { broker: string }, I>({
         setIsFeeNotEnough(false);
       }
       const feeItem = chargeFeeTokenList.find(
-        (item) => item.token === feeToken
+        (item) => item.belong === feeToken || item.token === feeToken
       );
       handleFeeChange({
         belong: feeToken,
@@ -127,7 +126,7 @@ export const DeployNFTWrap = <T extends TradeNFT<I> & { broker: string }, I>({
 
   // @ts-ignore
   return (
-    <GridStyle
+    <Grid
       className={assetsData ? "" : "loading"}
       paddingLeft={5 / 2}
       paddingRight={5 / 2}
@@ -185,9 +184,10 @@ export const DeployNFTWrap = <T extends TradeNFT<I> & { broker: string }, I>({
       <Grid item marginTop={2} alignSelf={"stretch"}>
         <Box
           display={"flex"}
-          alignItems={"center"}
+          alignItems={"flex-start"}
           justifyContent={"space-between"}
           position={"relative"}
+          flexDirection={"column"}
         >
           <Typography component={"h6"} color={"text.primary"} variant={"h4"}>
             {t("labelNFTDetail")}
@@ -224,7 +224,7 @@ export const DeployNFTWrap = <T extends TradeNFT<I> & { broker: string }, I>({
               color={"var(--color-text-third)"}
               title={tradeData?.nftType}
             >
-              {NFTType[tradeData?.nftType ?? 0]}
+              {tradeData.nftType}
             </Typography>
           </Typography>
           <Typography display={"inline-flex"} variant={"body1"} marginTop={2}>
@@ -328,6 +328,6 @@ export const DeployNFTWrap = <T extends TradeNFT<I> & { broker: string }, I>({
           {btnInfo ? t(btnInfo.label, btnInfo.params) : t(`labelNFTDeployBtn`)}
         </Button>
       </Grid>
-    </GridStyle>
+    </Grid>
   );
 };

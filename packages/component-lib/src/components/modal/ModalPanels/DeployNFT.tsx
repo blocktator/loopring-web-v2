@@ -27,6 +27,30 @@ export const NFTDeploy_Denied = (
   };
   return <DeployBase {...propsPatch} {...props} />;
 };
+export const NFTDeploy_First_Method_Denied = (
+  props: PanelProps & WithTranslation & Partial<NFTWholeINFO>
+) => {
+  const propsPatch = {
+    iconType: IconType.RefuseIcon,
+    describe1: props.t("labelFirstSignDenied", {
+      symbol: props.symbol,
+      value: props.value,
+    }),
+  };
+  return <DeployBase {...propsPatch} {...props} />;
+};
+export const NFTDeploy_In_Progress = (
+  props: PanelProps & WithTranslation & Partial<NFTWholeINFO>
+) => {
+  const propsPatch = {
+    iconType: IconType.RefuseIcon,
+    describe1: props.t("labelDeployInProgress", {
+      symbol: props.symbol,
+      value: props.value,
+    }),
+  };
+  return <DeployBase {...propsPatch} {...props} />;
+};
 
 export const NFTDeploy_Failed = (
   props: PanelProps & WithTranslation & Partial<NFTWholeINFO>
