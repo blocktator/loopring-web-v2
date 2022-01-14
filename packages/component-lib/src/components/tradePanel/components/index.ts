@@ -12,3 +12,4 @@ export * from "./tool";
 export * from "./ExportAccountWrap";
 export * from "./ActiveAcountWrap";
 export * from "./DepositNFTWrap";
+export * from "./DeployNFTWrap";

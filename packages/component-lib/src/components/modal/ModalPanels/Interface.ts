@@ -42,6 +42,11 @@ export enum AccountStep {
   NFTMint_Failed,
   NFTMint_Submit,
 
+  NFTDeploy_WaitForAuth,
+  NFTDeploy_Denied,
+  NFTDeploy_Failed,
+  NFTDeploy_Submit,
+
   Transfer_WaitForAuth,
   Transfer_First_Method_Denied,
   Transfer_User_Denied,

@@ -6,7 +6,6 @@ import {
   Box,
   FormControlLabel,
   Grid,
-  IconProps,
   Radio,
   RadioGroup,
   Typography,
@@ -23,29 +22,21 @@ import {
   TOAST_TIME,
   WithdrawTypes,
 } from "@loopring-web/common-resources";
-import { PopoverPure, Toast } from "../..";
+import {
+  DropdownIconStyled,
+  FeeTokenItemWrapper,
+  PopoverPure,
+  Toast,
+} from "../..";
 import { TradeBtnStatus } from "../Interface";
 import { Button, IconClearStyled, TextField } from "../../../index";
 import { WithdrawViewProps } from "./Interface";
 import { BasicACoinTrade } from "./BasicACoinTrade";
 import { ToggleButtonGroup } from "../../basic-lib";
-import styled from "@emotion/styled";
 import { useSettings } from "../../../stores";
 import * as _ from "lodash";
 import { NFTTokenInfo } from "@loopring-web/loopring-sdk";
 import { NFTInput } from "./BasicANFTTrade";
-
-const FeeTokenItemWrapper = styled(Box)`
-  background-color: var(--color-global-bg);
-`;
-
-const DropdownIconStyled = styled(DropDownIcon)<IconProps>`
-  transform: rotate(
-    ${({ status }: any) => {
-      return status === "down" ? "0deg" : "180deg";
-    }}
-  );
-` as (props: IconProps & { status: string }) => JSX.Element;
 
 export const WithdrawWrap = <
   T extends IBData<I> | (NFTTokenInfo & IBData<I>),

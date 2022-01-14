@@ -61,6 +61,7 @@ export type NFTWholeINFO = NFTTokenInfo &
     nftIdView: string;
     description: string;
     nftBalance: number;
+    isDeployed: boolean;
     etherscanBaseUrl: string;
   };
 export type TradeNFT<I> = {

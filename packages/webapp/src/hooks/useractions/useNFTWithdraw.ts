@@ -394,18 +394,9 @@ export const useNFTWithdraw = <
             step: AccountStep.Withdraw_WaitForAuth,
           });
 
-          // const nftWithdrawValue = tokenMap[inputValue.belong as string]
           const feeToken = tokenMap[nftWithdrawFeeInfo.belong];
           const fee = sdk.toBig(nftWithdrawFeeInfo?.__raw__?.feeRaw ?? 0);
-          // const balance = sdk.toBig(nftWithdrawValue.balance ?? 0).times('1e' + nftWithdrawValue.decimals)
-          // const tradeValue = sdk.toBig(nftWithdrawValue.tradeValue ?? 0).times('1e' + nftWithdrawValue.decimals)
           const tradeValue = nftWithdrawToken.tradeValue;
-          // const balance = nftWithdrawValue.nftBalance;
-          // const isExceedBalance = feeToken.tokenId === nftWithdrawValue.tokenId && tradeValue.plus(fee).gt(balance)
-          // const isExceedBalance =  sdk.toBig(tradeValue).gt(balance)
-
-          // const finalVol = isExceedBalance ?  balance.minus(fee) : tradeValue
-          // const nftWithdrawVol = finalVol.toFixed(0, 0)
 
           const storageId = await LoopringAPI.userAPI?.getNextStorageId(
             {
@@ -494,10 +485,7 @@ export const useNFTWithdraw = <
       // myLog('handleWithdrawTypeChange', value)
       const offchainType = OffchainNFTFeeReqType.NFT_WITHDRAWAL;
     },
-    handlePanelEvent: async (
-      data: SwitchData<R>,
-      switchType: "Tomenu" | "Tobutton"
-    ) => {
+    handlePanelEvent: async (data: SwitchData<R>) => {
       return new Promise((res: any) => {
         if (data.to === "button") {
           if (data.tradeData.belong) {

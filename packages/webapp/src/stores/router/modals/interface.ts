@@ -46,6 +46,7 @@ export type ModalDataStatus = {
     Partial<NFTTokenInfo & UserNFTBalanceInfo & NFTWholeINFO>;
   nftDepositValue: TradeNFT<any>;
   nftMintValue: TradeNFT<any>;
+  nftDeployValue: TradeNFT<any> & { broker: string };
 };
 
 export enum LAST_STEP {
@@ -55,6 +56,7 @@ export enum LAST_STEP {
   nftWithdraw = "nftWithdraw",
   nftTransfer = "nftTransfer",
   nftDeposit = "nftDeposit",
+  nftDeploy = "nftDeploy",
   nftMint = "nftMint",
   default = "default",
 }
